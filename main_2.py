@@ -52,7 +52,7 @@ mouse_died = False
 number_of_moves = 0
 game_won = False
 clock = pygame.time.Clock()
-fps = (10)
+fps = 10
 
 
 def handle_events():
@@ -124,11 +124,16 @@ create_mouse_and_cat()
 
 
 def update_mouse():
-    global mouse_rectangle, move_up, move_down, move_left, move_right, mouse_died, number_of_moves, game_won
+    global mouse_rectangle,  mouse_died, number_of_moves, game_won
+
+    direction = choice(["Vertical", "Horizontal"])
     
     motion_distance = tiles_width + seperation_line_width
-    mouse_rectangle.y += choice([0, -motion_distance, motion_distance])
-    mouse_rectangle.x += choice([0, -motion_distance, motion_distance])
+
+    if direction == "Vertical":
+        mouse_rectangle.y += choice([0, -motion_distance, motion_distance])
+    elif direction == "Horizontal":
+        mouse_rectangle.x += choice([0, -motion_distance, motion_distance])
     
 
     if (mouse_rectangle.x, mouse_rectangle.y) in forbidden:
